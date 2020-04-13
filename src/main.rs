@@ -10,7 +10,7 @@ fn main() {
 
     if cfg!(target_os = "windows") {
         Command::new("powershell")
-            .args(&[format!("({}).LastWriteTime = Get-Date", file)])
+            .args(&[format!("(ls \"{}\").LastWriteTime = Get-Date", file)])
             .status()
             .expect(&format!("Could not update mtime of {}", file));
     } else {
